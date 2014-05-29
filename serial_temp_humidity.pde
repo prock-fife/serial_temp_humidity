@@ -62,6 +62,7 @@ void writeByteSHT(byte data)
   shiftOut(dataPin,sckPin,MSBFIRST,data);
   
   pinMode(dataPin,INPUT);
+  digitalWrite(dataPin,HIGH);
 
   //Wait for SHT15 to acknowledge by pulling line low
   while(digitalRead(dataPin) == 1);
@@ -97,6 +98,8 @@ int readByte16SHT()
   int temp;
   
   pinMode(dataPin,INPUT);
+  digitalWrite(dataPin,HIGH);
+  
   pinMode(sckPin,OUTPUT);
   
   digitalWrite(sckPin,LOW);
@@ -115,7 +118,9 @@ int readByte16SHT()
       digitalWrite(dataPin,LOW);
       digitalWrite(sckPin,HIGH);
       digitalWrite(sckPin,LOW);
-      pinMode(dataPin,INPUT); 
+      
+      pinMode(dataPin,INPUT);
+      digitalWrite(dataPin,HIGH);
     }
   }
   
